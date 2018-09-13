@@ -41,33 +41,20 @@ def bubbleSort(alist):
     for passnum in range(len(alist)-1,0,-1):
         for i in range(passnum):
             if alist[i]>alist[i+1]:
-                temp = alist[i]
-                alist[i] = alist[i+1]
-                alist[i+1] = temp
+                alist[i],  alist[i+1] = alist[i+1], alist[i]
 
-def shellSort(alist):
-    sublistcount = len(alist)//2
-    while sublistcount > 0:
-      for startposition in range(sublistcount):
-        gapInsertionSort(alist,startposition,sublistcount)
-
- #     print("After increments of size",sublistcount,
- #                                  "The list is",alist)
-      sublistcount = sublistcount // 2
-
-def gapInsertionSort(alist,start,gap):
-    for i in range(start+gap,len(alist),gap):
-
-        currentvalue = alist[i]
-        position = i
-
-        while position>=gap and alist[position-gap]>currentvalue:
-            alist[position]=alist[position-gap]
-            position = position-gap
-
-        alist[position]=currentvalue
-
-
+def shellSort(array):
+	h = 7 #delta
+	
+	while h>=1 :
+		for i in range(h, len(array)):
+			j = i-h
+			while( j>=0 and aux<array[j] ):
+				array[j+h] = array[j]
+				j -= h
+			array[j+h] = aux
+		h -= 2			
+		
 
 array10 = [54,26,93,17,77,31,44,55,20,10]
 array20 = [65,39,65,55,110,135,24,83,108,171,
